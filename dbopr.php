@@ -58,6 +58,15 @@ class DbOperation
             return USER_ALREADY_EXIST;
         }
     }
+    public function loginUser($email,$pass){
+        if (!$this->checkLogin($email,$pass)) {
+             return LOGIN_SUCCESS
+         } 
+         else
+         {
+            return USER_INVALID
+         }
+    }
 
 
     private function isUserExist($email)
@@ -68,7 +77,7 @@ class DbOperation
         $stmt->store_result();
         return $stmt->num_rows > 0;
     }
-    private function loginUser($email,$pass)
+    private function checkLogin($email,$pass)
     {
         $stmt = $this->conn->prepare("SELECT id FROM users WHERE email = ? and pass = ?");
         $stmt->bind_param("ss", $email,$pass);
