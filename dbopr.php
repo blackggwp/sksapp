@@ -59,12 +59,12 @@ class DbOperation
         }
     }
     public function loginUser($email,$pass){
-        if (!$this->checkLogin($email,$pass)) {
-             return LOGIN_SUCCESS
+        if ($this->checkLogin($email,$pass)) {
+             return LOGIN_SUCCESS;
          } 
          else
          {
-            return USER_INVALID
+            return USER_INVALID;
          }
     }
 
@@ -79,8 +79,10 @@ class DbOperation
     }
     private function checkLogin($email,$pass)
     {
-        $stmt = $this->conn->prepare("SELECT id FROM users WHERE email = ? and pass = ?");
-        $stmt->bind_param("ss", $email,$pass);
+        $password = md5($pass);
+        $stmt = $this->conn->prepare("SELECT id FROM users WHERE email = ? AND password = ?");
+        echo $respond["m"] = $email.$password;
+        $stmt->bind_param("ss", $email,$password);
         $stmt->execute();
         $stmt->store_result();
         return $stmt->num_rows > 0;

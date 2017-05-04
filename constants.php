@@ -1,8 +1,8 @@
 <?php
 
 define('DB_USERNAME', 'root');
-define('DB_PASSWORD', 'password');
-define('DB_HOST', '127.0.0.1');
+define('DB_PASSWORD', 'admin1234');
+define('DB_HOST', 'localhost');
 define('DB_NAME', 'swift_db');
 
 define('USER_CREATED', 0);
