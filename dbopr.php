@@ -42,6 +42,7 @@ class DbOperation
 //     }
 // }
 
+    
     //Function to create a new user
     public function createUser($username, $pass, $email, $phone)
     {
